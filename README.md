@@ -7,6 +7,7 @@ Current version: `v0.1.0`
 This repo exists for one reason: OpenClaw upgrades can overwrite local runtime fixes, and the same Codex failures can come back.
 
 GitHub: <https://github.com/orime/openclaw-codex-runtime-fix>
+Raw bootstrap: <https://raw.githubusercontent.com/orime/openclaw-codex-runtime-fix/main/scripts/bootstrap-from-github.sh>
 
 ## English
 
@@ -33,8 +34,29 @@ This kit patches three classes of issues seen in installed OpenClaw runtimes:
 - `scripts/revert.sh`: restore the latest backup
 - `docs/postmortem.md`: concise write-up of the incident and root causes
 - `docs/upstream-issue-openclaw.md`: ready-to-file upstream issue text
+- `docs/ai-operator-prompt.md`: prompt for another AI assistant to operate the repo
 
 ### Usage
+
+Clone and run:
+
+```bash
+git clone https://github.com/orime/openclaw-codex-runtime-fix.git
+cd openclaw-codex-runtime-fix
+./scripts/apply.sh --restart
+```
+
+Remote one-liner:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/orime/openclaw-codex-runtime-fix/main/scripts/bootstrap-from-github.sh) --restart
+```
+
+Ask another AI to operate it:
+
+- Read `README.md`
+- Or read `docs/ai-operator-prompt.md`
+- Then clone the repo and run `scripts/apply.sh`, `scripts/verify.sh`, or `scripts/revert.sh` as needed
 
 Apply patch:
 
@@ -94,6 +116,26 @@ OPENCLAW_DIST_DIR=/path/to/openclaw/dist ./scripts/apply.sh --restart
    - 避开更脆弱的 websocket-first 续写路径
 
 ### 怎么用
+
+本地 clone 后执行：
+
+```bash
+git clone https://github.com/orime/openclaw-codex-runtime-fix.git
+cd openclaw-codex-runtime-fix
+./scripts/apply.sh --restart
+```
+
+远程单行执行：
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/orime/openclaw-codex-runtime-fix/main/scripts/bootstrap-from-github.sh) --restart
+```
+
+交给另一个 AI 代操作：
+
+- 让它先阅读 `README.md`
+- 或直接阅读 `docs/ai-operator-prompt.md`
+- 再让它执行 `scripts/apply.sh` / `scripts/verify.sh` / `scripts/revert.sh`
 
 打补丁：
 

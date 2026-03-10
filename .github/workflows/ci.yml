@@ -13,6 +13,7 @@ jobs:
       - name: Validate shell syntax
         run: |
           bash -n scripts/apply.sh
+          bash -n scripts/bootstrap-from-github.sh
           bash -n scripts/verify.sh
           bash -n scripts/revert.sh
 
@@ -22,4 +23,5 @@ jobs:
           test -f CHANGELOG.md
           test -f VERSION
           test -f docs/postmortem.md
+          test -f docs/ai-operator-prompt.md
           test -f docs/upstream-issue-openclaw.md

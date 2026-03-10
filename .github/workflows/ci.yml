@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate shell syntax
+        run: |
+          bash -n scripts/apply.sh
+          bash -n scripts/verify.sh
+          bash -n scripts/revert.sh
+
+      - name: Check required files
+        run: |
+          test -f README.md
+          test -f CHANGELOG.md
+          test -f VERSION
+          test -f docs/postmortem.md
+          test -f docs/upstream-issue-openclaw.md
